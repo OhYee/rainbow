@@ -1,0 +1,116 @@
+{
+    "variable": {
+        "$colors": [
+            {
+                "name": "black",
+                "value": 0
+            },
+            {
+                "name": "red",
+                "value": 1
+            },
+            {
+                "name": "green",
+                "value": 2
+            },
+            {
+                "name": "yellow",
+                "value": 3
+            },
+            {
+                "name": "blue",
+                "value": 4
+            },
+            {
+                "name": "magenta",
+                "value": 5
+            },
+            {
+                "name": "cyan",
+                "value": 6
+            },
+            {
+                "name": "white",
+                "value": 7
+            }
+        ],
+        "$font": [
+            {
+                "name": "bold",
+                "value": 1
+            },
+            {
+                "name": "weak",
+                "value": 2
+            },
+            {
+                "name": "italic",
+                "value": 3
+            },
+            {
+                "name": "underline",
+                "value": 4
+            },
+            {
+                "name": "blink",
+                "value": 5
+            },
+            {
+                "name": "quickBlink",
+                "value": 6
+            },
+            {
+                "name": "reverse",
+                "value": 7
+            },
+            {
+                "name": "hide",
+                "value": 8
+            },
+            {
+                "name": "del",
+                "value": 9
+            }
+        ]
+    },
+    "files": [
+        {
+            "package": "color",
+            "import": [
+                "fmt"
+            ],
+            "output": "../color4.go",
+            "body": [
+                {
+                    "template": "./color_const.tpl",
+                    "args": [
+                        "$colors"
+                    ]
+                },
+                {
+                    "template": "./color_set.tpl",
+                    "args": "$colors"
+                }
+            ]
+        },
+        {
+            "package": "color",
+            "import": [
+                "fmt"
+            ],
+            "output": "../font.go",
+            "body": [
+                {
+                    "template": "./font_const.tpl",
+                    "args": [
+                        "$font"
+                    ]
+                },
+                {
+                    "template": "./font_set.tpl",
+                    "args": "$font"
+                }
+            ]
+        }
+    ]
+}
