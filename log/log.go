@@ -15,7 +15,12 @@ type Logger struct {
 }
 
 func New() *Logger {
-	return new(Logger)
+	return &Logger{
+		prefix: nil,
+		suffix: nil,
+		color:  nil,
+		output: os.Stdout,
+	}
 }
 
 func (log *Logger) SetPrefix(prefix func(string) string) *Logger {
@@ -73,13 +78,13 @@ func (log *Logger) print(text string) {
 }
 
 func (log *Logger) Print(args ...interface{}) {
-	print(fmt.Sprint(args...))
+	log.print(fmt.Sprint(args...))
 }
 
 func (log *Logger) Println(args ...interface{}) {
-	print(fmt.Sprintln(args...))
+	log.print(fmt.Sprintln(args...))
 }
 
 func (log *Logger) Printf(format string, args ...interface{}) {
-	print(fmt.Sprintf(format, args...))
+	log.print(fmt.Sprintf(format, args...))
 }
