@@ -18,32 +18,39 @@ func New() *Logger {
 	return new(Logger)
 }
 
-func (log *Logger) SetPrefix(prefix func(string) string) {
+func (log *Logger) SetPrefix(prefix func(string) string) *Logger {
 	log.prefix = prefix
+	return log
 }
 
-func (log *Logger) SetSuffix(suffix func(string) string) {
+func (log *Logger) SetSuffix(suffix func(string) string) *Logger {
 	log.suffix = suffix
+	return log
 }
 
-func (log *Logger) SetColor(color *color.Color) {
+func (log *Logger) SetColor(color *color.Color) *Logger {
 	log.color = color
+	return log
 }
 
-func (log *Logger) SetOutput(output io.Writer) {
+func (log *Logger) SetOutput(output io.Writer) *Logger {
 	log.output = output
+	return log
 }
 
-func (log *Logger) SetOutputToStdout() {
+func (log *Logger) SetOutputToStdout() *Logger {
 	log.output = os.Stdout
+	return log
 }
 
-func (log *Logger) SetOutputToStderr() {
+func (log *Logger) SetOutputToStderr() *Logger {
 	log.output = os.Stderr
+	return log
 }
 
-func (log *Logger) SetOutputToNil() {
+func (log *Logger) SetOutputToNil() *Logger {
 	log.output = nil
+	return log
 }
 
 func (log *Logger) print(text string) {
