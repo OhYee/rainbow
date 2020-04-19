@@ -8,10 +8,11 @@ import (
 
 // Error struct
 type Error struct {
-	msg string
+	msg   string
+	stack []string
 }
 
-func getStack(_skip ...int) string {
+func getStack(_skip ...int) []string {
 	pcs := make([]uintptr, 100)
 	skip := 3
 	if len(_skip) != 0 {
@@ -29,17 +30,14 @@ func getStack(_skip ...int) string {
 			break
 		}
 	}
-	return strings.Join(s, "\n")
+	return s
 }
 
 // New error with call stack
 func New(format string, args ...interface{}) error {
 	err := &Error{
-		msg: fmt.Sprintf(
-			"%s\n%s",
-			fmt.Sprintf(format, args...),
-			getStack(),
-		),
+		msg:   fmt.Sprintf(format, args...),
+		stack: getStack(),
 	}
 	return err
 }
@@ -48,11 +46,8 @@ func New(format string, args ...interface{}) error {
 func NewErr(err error, skip ...int) error {
 	if !IsError(err) && err != nil {
 		return &Error{
-			msg: fmt.Sprintf(
-				"%s\n%s",
-				err.Error(),
-				getStack(skip...),
-			),
+			msg:   err.Error(),
+			stack: getStack(skip...),
 		}
 	}
 	return err
@@ -61,6 +56,11 @@ func NewErr(err error, skip ...int) error {
 // Error return the error message
 func (err *Error) Error() string {
 	return err.msg
+}
+
+// Error return the error message
+func (err *Error) ErrorWithStack() string {
+	return fmt.Sprintf("%s\n%s", err.Error(), strings.Join(err.stack, "\n"))
 }
 
 // Wrapper wrap error with stack.
