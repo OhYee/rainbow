@@ -2,9 +2,10 @@ package log
 
 import (
 	"fmt"
-	"github.com/OhYee/rainbow/color"
 	"io"
 	"os"
+
+	"github.com/OhYee/rainbow/color"
 )
 
 type Logger struct {
