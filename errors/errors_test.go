@@ -40,12 +40,12 @@ func TestError(t *testing.T) {
 
 	// stack test
 	err = ErrCause()
-	if !strings.HasPrefix(err.(*Error).ErrorWithStack(), wantErr) {
+	if !strings.HasPrefix(ShowStack(err), wantErr) {
 		t.Errorf("want err %s, but got %s\n", wantErr, err)
 	}
 
 	err = NewErr(fmt.Errorf("err"))
-	if !strings.HasPrefix(err.(*Error).ErrorWithStack(), wantErr2) {
+	if !strings.HasPrefix(ShowStack(err), wantErr2) {
 		t.Errorf("want err %s, but got %s\n", wantErr2, err)
 	}
 
@@ -64,7 +64,7 @@ func TestError(t *testing.T) {
 	}
 	err2 = fmt.Errorf("err")
 	Wrapper(&err2)
-	if !strings.HasPrefix(err2.(*Error).ErrorWithStack(), wantErr3) {
+	if !strings.HasPrefix(ShowStack(err2), wantErr3) {
 		t.Errorf("want err %s, but got %s\n", wantErr3, err2)
 	}
 

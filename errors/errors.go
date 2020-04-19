@@ -79,3 +79,8 @@ func IsError(err error) bool {
 	_, isRainbowError := (err).(*Error)
 	return isRainbowError
 }
+
+// ShowStack show error with call stack
+func ShowStack(err error) string {
+	return NewErr(err, 1).(*Error).ErrorWithStack()
+}
