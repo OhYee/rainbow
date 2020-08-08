@@ -2,8 +2,9 @@ package color
 
 import (
 	"fmt"
-	"github.com/OhYee/goutils/functional"
 	"strings"
+
+	fp "github.com/OhYee/goutils/functional"
 )
 
 //go:generate gcg ./template/data.json
@@ -54,7 +55,7 @@ func (c *Color) SetBackColorRGB(r byte, g byte, b byte) *Color {
 
 // Colorful the text
 func (c *Color) Colorful(text string) string {
-	prefix := strings.Join(fp.FilterString(func(s string) bool {
+	prefix := strings.Join(fp.FilterString(func(s string, idx int) bool {
 		return s != ""
 	}, []string{c.font, c.front, c.back}), ";")
 	if prefix != "" {
