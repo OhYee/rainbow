@@ -29,7 +29,7 @@ func TestLog(t *testing.T) {
 	want.WriteString(color.New().SetFrontYellow().SetFontBold().Colorful("DEBUG "))
 	want.WriteString(color.New().SetFrontYellow().Colorful("test debug\n"))
 	want.WriteString(color.New().SetFrontRed().SetFontBold().Colorful("ERROR "))
-	want.WriteString(color.New().SetFrontRed().Colorful("test error \n"))
+	want.WriteString(color.New().SetFrontRed().Colorful("test error\n"))
 
 	buf := bytes.NewBuffer([]byte{})
 	logger := New().SetOutput(buf)
