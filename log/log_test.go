@@ -26,8 +26,10 @@ func TestLog(t *testing.T) {
 	want.WriteRune('\n')
 	want.WriteString(bold.Colorful("INFO "))
 	want.WriteString("test info\n")
-	want.WriteString(color.New().SetFrontYellow().SetFontBold().Colorful("DEBUG "))
-	want.WriteString(color.New().SetFrontYellow().Colorful("test debug\n"))
+	want.WriteString(color.New().SetFrontYellow().SetFontBold().Colorful("WARNING "))
+	want.WriteString(color.New().SetFrontYellow().Colorful("test warning\n"))
+	want.WriteString(color.New().SetFrontBlue().SetFontBold().Colorful("DEBUG "))
+	want.WriteString(color.New().SetFrontBlue().Colorful("test debug\n"))
 	want.WriteString(color.New().SetFrontRed().SetFontBold().Colorful("ERROR "))
 	want.WriteString(color.New().SetFrontRed().Colorful("test error\n"))
 
@@ -52,6 +54,9 @@ func TestLog(t *testing.T) {
 
 	Info.SetOutput(buf)
 	Info.Println("test info")
+
+	Warning.SetOutput(buf)
+	Warning.Println("test warning")
 
 	Debug.SetOutput(buf)
 	Debug.Println("test debug")
