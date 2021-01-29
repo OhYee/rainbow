@@ -43,7 +43,7 @@ func (c *Color) SetBackColor256(color byte) *Color {
 
 // SetFrontColorRGB set the front color using rgb color, not all terminals support
 func (c *Color) SetFrontColorRGB(r byte, g byte, b byte) *Color {
-	c.front = fmt.Sprintf("48;2;%d;%d;%d", r, g, b)
+	c.front = fmt.Sprintf("38;2;%d;%d;%d", r, g, b)
 	return c
 }
 
