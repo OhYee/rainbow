@@ -12,7 +12,7 @@ type Error struct {
 	stack []string
 }
 
-func getStack(_skip ...int) []string {
+func GetStack(_skip ...int) []string {
 	pcs := make([]uintptr, 100)
 	skip := 3
 	if len(_skip) != 0 {
@@ -37,7 +37,7 @@ func getStack(_skip ...int) []string {
 func New(format string, args ...interface{}) error {
 	err := &Error{
 		msg:   fmt.Sprintf(format, args...),
-		stack: getStack(),
+		stack: GetStack(),
 	}
 	return err
 }
@@ -47,7 +47,7 @@ func NewErr(err error, skip ...int) error {
 	if !IsError(err) && err != nil {
 		return &Error{
 			msg:   err.Error(),
-			stack: getStack(skip...),
+			stack: GetStack(skip...),
 		}
 	}
 	return err
